@@ -1,26 +1,27 @@
-alist = []
-check = True
-alist.append(0)
-while check:
+primeNums = []
+invalidInput = True
+primeNums.append(0)
+while invalidInput:
     try:
         maxRange = int(input('Max number to find primes: '))
-        check = False
+        invalidInput = False
     except:
         print('Type a valid number', '\n')
 
 for i in range(0, maxRange + 1):
     
-    for c in alist:
-        if c != 0 and c != 1 and (i % c) == 0:
-            break
-    else:
-        if len(alist) % 100 == 0:
-            print('List size =',len(alist), '--- Current number =',alist[-1])
-        alist.append(i)
+    for c in primeNums: # For every prime number found
+        if c != 0 and c != 1 and (i % c) == 0: # Check if the number in question (i) is prime, by 
+            break                              # dividing it by every other prime number
+    else:                                      # TODO: Optimize this by checking only the sqrt(primeNums)
+        if len(primeNums) % 100 == 0:
+            print('List size =',len(primeNums), '--- Current number =',primeNums[-1]) # Progress update to the user
+        primeNums.append(i)
 
-alist.pop(0)
-alist.pop(0)
-alist.pop(0)
-alist.pop(2)
+primeNums.pop(0)
+primeNums.pop(0)
+primeNums.pop(0)
+primeNums.pop(2)
+
 myFile = open('primeOutput.txt','w')
-myFile.write(str(alist))
+myFile.write(str(primeNums))
